@@ -1,0 +1,67 @@
+﻿@model COMP306_DBTEST.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.Image)" width="200" height="200" alt="@(Model.ProductName)" title="@(Model.ProductName)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SimpleInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SimpleInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            <p class="pull-right label label-primary"> $@Html.DisplayFor(model => model.Price)</p>
+        </dd>
+    </dl>
+</div>
+@using (Html.BeginForm("AddToCart", "ShoppingCart"))
+{
+    <div class="pull-right">
+        @Html.HiddenFor(x => x.ProductId)
+        @if (Request.Url != null)
+        {
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        }
+        <input type="submit" class="btn btn-success" value="Add to cart" />
+    </div>
+}
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

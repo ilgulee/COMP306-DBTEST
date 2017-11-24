@@ -1,0 +1,60 @@
+﻿@model IEnumerable<COMP306_DBTEST.Models.Product>
+
+@{
+    ViewBag.Title = "Shop";
+}
+
+<h2>Online Store - Items</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SimpleInfo)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+        <th></th>
+        
+    </tr>
+
+    @foreach (var item in Model) {
+   
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Image)" width="100" height="100" alt="@item.ProductName" title="@item.ProductName"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SimpleInfo)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+            <td>
+                <p class="pull-right label label-primary"> $@Html.DisplayFor(modelItem => item.Price)</p>
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "Details", new {id = item.ProductId},new{id="ProductId"}) 
+        
+            </td>
+      
+        </tr>
+   
+    }
+
+</table>
